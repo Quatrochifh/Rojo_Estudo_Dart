@@ -1,0 +1,11 @@
+INICIANDO COM FLUTTER 
+
+
+#1 - COMEÇANDO COM DART
+	
+	Dart veio com a ideia de substituir o Javascript, porem era impossivel, já que o dart é muito utilizado.
+aparentemente o dart é uma mistra de c# com javascript 
+
+2# - Primeiro código com Dart 
+
+	

@@ -1,0 +1,1 @@
+Esses codigos são para poder pegar praticas com a sintaxe, e conseguir entender como o dart funciona. 
