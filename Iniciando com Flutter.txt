@@ -1,11 +1,15 @@
 INICIANDO COM FLUTTER 
 
 
-#1 - COMEÇANDO COM DART
+#1 - COMEÇANDO COM DART/FLUTTER
 	
 	Dart veio com a ideia de substituir o Javascript, porem era impossivel, já que o dart é muito utilizado.
-aparentemente o dart é uma mistra de c# com javascript 
+aparentemente o dart é uma mistura de c# com javascript 
+
+	O flutter é uma ferramenta que permite construir aplicações nativas cross-plataform (IOS, ANDROID) utilizando um único código fonte/Linguagem de programação. Como é uma linguagem multiplataformaela consegue supotar tanto web quanto mobile(IOS, ANDROID).
+	Dentro do Flutter temos o SDK e os Frameworks Widget, o sdk é uma ferramenta para compilar seu código nativo + desenvolver com facilidade; O framework é um componente de UI reutilizavel. tem funçõs utiliárias e pacotes. 
 
 2# - Primeiro código com Dart 
+	Minhas primeiras linhas de código com Dart estão presentes no LINK abaixo: São bem basicas, feitas com base em um curso na UDEMY: https://www.udemy.com/course/curso-de-dart-lang-completo/
 
-	
+Primeiras Linhas de Código: https://github.com/Quatrochifh/Rojo_Estudo_Dart
