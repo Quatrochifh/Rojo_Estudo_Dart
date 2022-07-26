@@ -13,3 +13,17 @@ aparentemente o dart é uma mistura de c# com javascript
 	Minhas primeiras linhas de código com Dart estão presentes no LINK abaixo: São bem basicas, feitas com base em um curso na UDEMY: https://www.udemy.com/course/curso-de-dart-lang-completo/
 
 Primeiras Linhas de Código: https://github.com/Quatrochifh/Rojo_Estudo_Dart
+
+3# - Começo com Flutter
+
+@Override é basicamente obrigatorio, ele diz que obrigatoriamente o component stateless precisa implementar, sobrescrevendo o build
+
+4# Diferentes tipos de Widgets 
+
+visiveis                                        x                  Invisíveis
+ReisedButton(), Text(), Card(),....                                Row(), Column(), ListView(),...
+
+                                     Conteiner() - Tem um pé em cada
+
+Desenha na tela                                                     Prover estrutura do app e contola como os widgwts são 									    desenhados na tela
+(('O QUE O USUÁRIO VÊ NA TELA'))                                    (('VISÍVEL INDIRETAMENTE'))
