@@ -9,18 +9,18 @@ class Resposta extends StatelessWidget {
 
   final String texto;
 
-  final void Function() onPressed;
+  final void Function() quandoSelecionado;
 
   // ignore: use_key_in_widget_constructors
-  const Resposta (this.texto, this.onPressed );
+  const Resposta (this.texto, this.quandoSelecionado );
 
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      child: ElevatedButton(
-        onPressed: onPressed,
+      child:  ElevatedButton(
+        onPressed: quandoSelecionado,
         child: Text(texto),
         style: ElevatedButton.styleFrom(
         primary: Color.fromARGB(255, 116, 167, 226), // background color
