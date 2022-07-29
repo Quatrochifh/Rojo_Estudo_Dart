@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+//import 'package:flutter/cupertino.dart';
 //import 'package:flutter/src/foundation/key.dart';
 //import 'package:flutter/src/widgets/framework.dart';
 //import 'package:flutter/cupertino.dart';
@@ -9,10 +9,10 @@ class Resposta extends StatelessWidget {
 
   final String texto;
 
-  final void Function() quandoSelecionado;
+ final void Function() quandoSelecionado;
 
-  // ignore: use_key_in_widget_constructors
-  const Resposta (this.texto, this.quandoSelecionado );
+  const Resposta(this.texto,  this.quandoSelecionado, {Key? key})
+      : super(key: key);
 
 
   @override
@@ -23,8 +23,8 @@ class Resposta extends StatelessWidget {
         onPressed: quandoSelecionado,
         child: Text(texto),
         style: ElevatedButton.styleFrom(
-        primary: Color.fromARGB(255, 116, 167, 226), // background color
-        onPrimary: Colors.black87, 
+        primary: Color.fromARGB(255, 11, 165, 34), // background color
+        onPrimary: Colors.white, 
         ),
     ));
   }

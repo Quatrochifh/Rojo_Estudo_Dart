@@ -18,7 +18,13 @@ Primeiras Linhas de Código: https://github.com/Quatrochifh/Rojo_Estudo_Dart
 
 @Override é basicamente obrigatorio, ele diz que obrigatoriamente o component stateless precisa implementar, sobrescrevendo o build
 
-4# Diferentes tipos de Widgets 
+4# - Stateless e Stateful
+
+
+
+
+
+5# Diferentes tipos de Widgets 
 
 visiveis                                        x                  Invisíveis
 ReisedButton(), Text(), Card(),....                                Row(), Column(), ListView(),...

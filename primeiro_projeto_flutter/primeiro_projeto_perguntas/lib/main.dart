@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import './questionario.dart';
 import './resutado.dart';
+//import './resposta.dart';
 
 main() => runApp(const PerguntaApp());
 
@@ -17,30 +18,43 @@ class _PerguntaAppState extends State<PerguntaApp> {
 
   final _perguntas = const [
     {
-      'texto': 'Qual é a sua cor favorita?',
+      'name': '¹ᴾᴼᴺᵀᴼ',
+      'texto': 'O que significa "Valar Dohaeris"?',
       'respostas': [
-        {'texto': 'preto', 'nota': 10},
-        {'texto': 'vermelho', 'nota': 9},
-        {'texto': 'verde', 'nota': 8},
-        {'texto': 'laranja', 'nota': 7},
+        {'texto': '"Todos os homens devem servir"', 'nota': 10},
+        {'texto': 'Todas as pessoas devem sofrer', 'nota': 0},
+        {'texto': 'Todas as pessoas devem morrer', 'nota': 0},
+        {'texto': 'Todos os homens devem cair', 'nota': 0},
       ]
     },
     {
-      'texto': 'Qual o seu animal favorito?',
+      'name': '¹ᴾᴼᴺᵀᴼ',
+      'texto': 'Quais são os nomes dos 3 dragões de Daenerys Targaryen?',
       'respostas': [
-        {'texto': 'Lobo', 'nota': 10},
-        {'texto': 'Leão', 'nota': 9},
-        {'texto': 'Veado', 'nota': 8},
-        {'texto': 'Dragão', 'nota': 7},
+        {'texto': 'Shenlong, Tiamat, Mushun', 'nota': 0},
+        {'texto': 'Kall, Tyrell, Dracarys', 'nota': 0},
+        {'texto': 'Saphira, Draco, Lestark', 'nota': 0},
+        {'texto': 'Rhaegal, Drogon e Viserion', 'nota': 10},
       ]
     },
     {
-      'texto': 'Qual a sua casa favorita?',
+      'name': '¹ᴾᴼᴺᵀᴼ',
+      'texto': 'Quem deu para Jon Snow a espada Garralonga?',
       'respostas': [
-        {'texto': 'Stark', 'nota': 10},
-        {'texto': 'Lannister', 'nota': 9},
-        {'texto': 'Baratheon', 'nota': 8},
-        {'texto': 'Targaryen', 'nota': 10},
+        {'texto': 'Ned Stark', 'nota': 0},
+        {'texto': 'Tyrion Lannister', 'nota': 0},
+        {'texto': 'Jeor Mormont', 'nota': 10},
+        {'texto': 'Tormund Giantsbane', 'nota': 0},
+      ]
+    },
+        {
+      'name': '¹ᴾᴼᴺᵀᴼ',
+      'texto': 'Qual rei ficou conhecido como "Rei Louco"?',
+      'respostas': [
+        {'texto': 'Rhaegar Targaryen', 'nota': 0},
+        {'texto': 'Joffrey Baratheon', 'nota': 0},
+        {'texto': 'Aegon IV Targaryen', 'nota': 0},
+        {'texto': 'Aerys II Targaryen', 'nota': 10},
       ]
     }
   ];
@@ -59,27 +73,23 @@ class _PerguntaAppState extends State<PerguntaApp> {
         _notaTotal += nota;
       });
     }
-
-    print(_notaTotal);
   }
 
   bool get temPerguntaSelecionada {
     return _perguntaSelecionada < _perguntas.length;
   }
 
+  void _reiniciarQuestionario() {
+    setState(() {
+      _perguntaSelecionada = 0;
+      _notaTotal = 0;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    // List<String> respostas = temPerguntaSelecionada
-    // ? _perguntas[_perguntaSelecionada].cast()['respostas']
-    // : [];
-    // List<Widget> widgets =
-    //     respostas.map((t) => Resposta(t, _responder)).toList();
-
-    //  for (String textoResp in respostas) {
-    //     widgets.add(Resposta(textoResp, _responder));
-    //   }
-
     return MaterialApp(
+      theme: ThemeData( primarySwatch: Colors.green),
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Perguntas'),
@@ -88,9 +98,11 @@ class _PerguntaAppState extends State<PerguntaApp> {
             ? Questionario(
                 perguntas: _perguntas,
                 perguntaSelecionada: _perguntaSelecionada,
-                quandoResponder: _responder)
-            :  Resultado(_notaTotal),
+                quandoResponder: _responder,
+              )
+            : Resultado(_notaTotal, _reiniciarQuestionario),
       ),
     );
   }
 }
+
