@@ -17,15 +17,15 @@ class Resposta extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
       child:  ElevatedButton(
         onPressed: quandoSelecionado,
-        child: Text(texto),
         style: ElevatedButton.styleFrom(
-        primary: Color.fromARGB(255, 11, 165, 34), // background color
+        primary: const Color.fromARGB(255, 11, 165, 34), // background color
         onPrimary: Colors.white, 
         ),
+        child:  Text(texto),
     ));
   }
 }

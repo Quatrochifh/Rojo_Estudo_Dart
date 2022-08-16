@@ -1,26 +1,37 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class TransactionForm extends StatelessWidget {
-  final titleController = TextEditingController();
-  final valueController = TextEditingController();
-
+class TransactionForm extends StatefulWidget {
   final void Function(String, double) onSubmit;
 
+  const TransactionForm(this.onSubmit, {Key? key}) : super(key: key);
+
+  @override
+  State<TransactionForm> createState() => _TransactionFormState();
+}
+
+class _TransactionFormState extends State<TransactionForm> {
+  final titleController = TextEditingController();
+
+  final valueController = TextEditingController();
+
   _submitform(){
-    
+    //Aqui ele estara mandando o que sera passado
+    // pelo usurio(o titulo da despesa e o valor)
+
     final title = titleController.text;
-    final value = double.tryParse(valueController.text) ?? 1;
+    final value = double.tryParse(valueController.text) ?? 0;
+
+    //ele fará uma validação, se o titulo estiver vazio ou
+    // o valor for menor ou igual a 0
+    //não será enviado nada!
 
     if(title.isEmpty || value <= 0 ){
       return;
     }
 
-    onSubmit(title, value);
+    widget.onSubmit(title, value);
                   
   }
-
-   TransactionForm(this.onSubmit, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

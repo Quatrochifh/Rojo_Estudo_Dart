@@ -15,7 +15,7 @@ class Questionario extends StatelessWidget {
   final void Function(int) quandoResponder;
 
   // ignore: use_key_in_widget_constructors
-  Questionario({
+  const Questionario({
     required this.perguntas,
     required this.perguntaSelecionada,
     required this.quandoResponder,
