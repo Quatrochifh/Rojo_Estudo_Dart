@@ -69,7 +69,7 @@ class Chart extends StatelessWidget {
                     //            como String
                    label: tr['day'] as String ,
                    value: tr['value'] as double, 
-                   percentage: (tr['value'] as double) / _WeekTotalValue,
+                   percentage: _WeekTotalValue == 0 ? 0 : (tr['value'] as double) / _WeekTotalValue,
                   ),
                 );
               }).toList(),

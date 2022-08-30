@@ -44,6 +44,10 @@ class ExpensesApp extends StatelessWidget {
             fontWeight: FontWeight.bold,
             color: Colors.black
           ),
+          button: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          )
         ),
         appBarTheme: const AppBarTheme(
           titleTextStyle:  TextStyle(
@@ -67,32 +71,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<Transaction>_transactions = [
-    Transaction(
-      id: 't1',
-      title: 'Novo Tênis de Corrida',
-      value: 310.76,
-      date: DateTime.now().subtract(const Duration(days: 3)),
-    ),
-    Transaction(
-      id: 't2',
-      title: 'Conta de Luz',
-      value: 211.30,
-      date: DateTime.now().subtract(const Duration(days: 2)),
-    ),
-        Transaction(
-      id: 't3',
-      title: 'Conta de agua',
-      value:111111.30,
-      date: DateTime.now().subtract(const Duration(days: 2)),
-    ),
-        Transaction(
-      id: 't4',
-      title: 'Conta de carta',
-      value: 21.30,
-      date: DateTime.now().subtract(const Duration(days: 2)),
-    ),
-  ];
+  final List<Transaction>_transactions = [];
 
   List<Transaction> get _recentTransactions {
     return _transactions.where((tr){
@@ -103,12 +82,12 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList( );
   }
 
-  _addTransaction(String title, double value) {
+  _addTransaction(String title, double value, DateTime date) {
     final newTransaction = Transaction(
       id: Random().nextDouble().toString(),
       title: title,
       value: value,
-      date: DateTime.now(),
+      date: date,
     );
 
     setState(() {
@@ -117,6 +96,16 @@ class _MyHomePageState extends State<MyHomePage> {
 
     //aqui ele esta escondendo o modal, logo apos o envio da transação
     Navigator.of(context).pop();
+  }
+  //Aqui vamos deletar a despesa
+  _removeTransaction(String id){
+    setState(() {
+      //o removeWhere servira de filtro para remover a lista de acordo com oq passarmos
+      _transactions.removeWhere((tr) {
+        //nesse caso seria o Id
+        return tr.id == id;
+      });
+    });
   }
 
     //aqui abriremos o modal 
@@ -149,7 +138,7 @@ class _MyHomePageState extends State<MyHomePage> {
               .stretch, // Serve para colocar as coisas no centro/Começo/Final ou como nesse caso, esta esticando
           children: <Widget>[
            Chart(_recentTransactions),  
-            TransactionList(_transactions),
+            TransactionList(_transactions, _removeTransaction),
           ],
         ),
       ),
