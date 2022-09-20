@@ -43,6 +43,7 @@ class Chart extends StatelessWidget {
   }
 
 //esa é a soma total da semana que seria o percentage
+  // ignore: non_constant_identifier_names
   double get _WeekTotalValue {
     return groupedTransactions.fold(
       0.0, (sum, tr) {

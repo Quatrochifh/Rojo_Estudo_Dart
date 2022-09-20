@@ -1,3 +1,4 @@
+// ignore_for_file: non_constant_identifier_names
 import 'package:flutter/material.dart';
 import '../models/transaction.dart';
 import 'package:intl/intl.dart';
@@ -17,12 +18,12 @@ class TransactionList extends StatelessWidget {
             builder: (ctx, Constraints) {
               return Column(
                 children: [
-                 const SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Text(
                     'Nenhuma Transação Cadastrada!',
                     style: Theme.of(context).textTheme.headline6,
                   ),
-                  const SizedBox( height: 20 ),
+                  const SizedBox(height: 20),
                   SizedBox(
                     height: Constraints.maxHeight * 0.5,
                     child: Image.asset(
@@ -86,11 +87,22 @@ class TransactionList extends StatelessWidget {
                   subtitle: Text(
                     DateFormat('d MMM y').format(tr.date),
                   ),
-                  trailing: IconButton(
-                    icon: const Icon(Icons.delete),
-                    color: Theme.of(context).errorColor,
-                    onPressed: () => onRemove(tr.id),
-                  ),
+                  trailing: MediaQuery.of(context).size.width > 420
+                        ? TextButton.icon(
+                            onPressed: () => onRemove(tr.id),
+                            icon: Icon(Icons.delete,
+                                color: Theme.of(context).errorColor),
+                            label: Text(
+                              'Excluir',
+                              style: TextStyle(
+                                  color: Theme.of(context).errorColor),
+                            ),
+                          )
+                      : IconButton(
+                          icon: const Icon(Icons.delete),
+                          color: Theme.of(context).errorColor,
+                          onPressed: () => onRemove(tr.id),
+                        ),
                 ),
               );
             },

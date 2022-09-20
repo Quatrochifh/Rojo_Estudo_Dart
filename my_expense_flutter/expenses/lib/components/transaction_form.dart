@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'adaptative_button.dart';
+import 'adaptative_textfield.dart';
+import 'adaptative_date_picker.dart';
 
 class TransactionForm extends StatefulWidget {
   final void Function(String, double, DateTime) onSubmit;
@@ -27,7 +29,7 @@ class _TransactionFormState extends State<TransactionForm> {
     // o valor for menor ou igual a 0
     //não será enviado nada!
 
-    if (title.isEmpty || value <= 0 ||_selectDate == null) {
+    if (title.isEmpty || value <= 0 || _selectDate == null) {
       return;
     }
 
@@ -35,25 +37,26 @@ class _TransactionFormState extends State<TransactionForm> {
   }
 
   //aqui ele vai mostrar um selecionador de datas
-  _showDatePicker(){
+  // ignore: unused_element
+  _showDatePicker() {
     showDatePicker(
       context: context,
       //aqui é a data que vem por padrão
-       initialDate: DateTime.now(), 
-       // aqui é a data mais antiga que vc poderia selecionar
-       firstDate: DateTime(2022), 
-       //aqui é a data mais recente que vc pode selecionar
-       lastDate: DateTime.now(),
-       //aqui vamos ver a data escolhida 
-    ).then((pickedDate){
-      if(pickedDate == null) {
+      initialDate: DateTime.now(),
+      // aqui é a data mais antiga que vc poderia selecionar
+      firstDate: DateTime(2022),
+      //aqui é a data mais recente que vc pode selecionar
+      lastDate: DateTime.now(),
+      //aqui vamos ver a data escolhida
+    ).then((pickedDate) {
+      if (pickedDate == null) {
         return;
       }
       //se o a data estiver escolhida, ele vai mostrar no lado
       //ele precisa de um setState para atualizar a pag
-    setState(() {
-      _selectDate = pickedDate;
-    });
+      setState(() {
+        _selectDate = pickedDate;
+      });
       //print('executado dentro do then');
     });
     //print('Executado!!!');
@@ -61,73 +64,67 @@ class _TransactionFormState extends State<TransactionForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 5,
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Column(children: [
-          TextField(
-            controller: _titleController,
-            onSubmitted: (value) => _submitform(),
-            decoration: const InputDecoration(
-              labelText: 'titulo do produto',
-            ),
+    return SingleChildScrollView(
+      child: Card(
+        elevation: 5,
+        child: Padding(
+          padding: EdgeInsets.only(
+            top: 10,
+            right: 10,
+            left: 10,
+            //MediaQuery pega o tamanho do bottom do celular
+            //subindo no msm tamanho do teclado, fazendo um
+            //scrool no modal
+            bottom: 10 + MediaQuery.of(context).viewInsets.bottom,
           ),
-          TextField(
-            controller: _valueController,
-            keyboardType: const TextInputType.numberWithOptions(decimal: true),
-            onSubmitted: (value) => _submitform(),
-            decoration: const InputDecoration(
-              labelText: 'Valor (R\$)',
+          child: Column(children: [
+            AdaptativeTextField(
+              controller: _titleController,
+              onSubmitted: (value) => _submitform(),
+              label: 'titulo',
+              //Keyboard já esta definida como padrão 
             ),
-          ),
-          SizedBox(
-            height: 70,
-            child: Row(
-              children: <Widget>[
-                 Expanded(
-                   child: Text(
-                   _selectDate == null
-                            //caso o selectDate seja nulo, nenhuma data sera selecionada
-                            ? 'Nenhuma data selecionada!'
-                            // se tiver selecionada, ele vai aparecer
-                            : 'Data Selecionada: ${DateFormat('dd/MM/y')
-                            .format(_selectDate!)}',
-                    ),
-                 ),
-                TextButton(
-                  //ao pressionar ele vai chamar um
-                  // selecionador para podermos colocar 
-                  //a data
-                  onPressed: _showDatePicker,
-                  child: const Text(
-                    'Selecionar Data',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ],
+                
+            AdaptativeTextField(
+              controller: _valueController,
+              keyboardType:
+                  const TextInputType.numberWithOptions(decimal: true),
+              onSubmitted: (value) => _submitform(),
+                label: 'Valor (R\$)',
             ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.green,
-                    //onPrimary: Color.fromARGB(255, 255, 255, 255),
-                  ),
+             AdaptativeDatePicker(
+              selectDate:  _selectDate, 
+             onDateChanged: (newDate) {
+                  setState(() {
+                    _selectDate = newDate;
+                  });
+                },
+              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                //aqui trocamos o ElevatadButton, por um botão adaptativo, 
+                //tanto quanto para IOS, quanto para Android
+                Adaptativebutton(
+                  label: 'Nova Transação', 
                   onPressed: _submitform,
-                  child: Text(
-                    'Nova Transação',
-                    style: TextStyle(
-                      color: Theme.of(context).textTheme.button?.color,
-                    ),
-                  ))
-            ],
-          )
-        ]),
+                ),
+                // ElevatedButton(
+                //     style: ElevatedButton.styleFrom(
+                //       primary: Colors.green,
+                //       //onPrimary: Color.fromARGB(255, 255, 255, 255),
+                //     ),
+                //     onPressed: _submitform,
+                //     child: Text(
+                //       'Nova Transação',
+                //       style: TextStyle(
+                //         color: Theme.of(context).textTheme.button?.color,
+                //       ),
+                //     ))
+              ],
+            )
+          ]),
+        ),
       ),
     );
   }
