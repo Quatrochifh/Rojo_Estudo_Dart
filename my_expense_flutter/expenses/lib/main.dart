@@ -59,9 +59,27 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   final List<Transaction> _transactions = [];
   bool _showChart = false;
+
+@override
+//ciclos de vida
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+@override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+
+  }
+
+@override
+  void dispose(){
+    super.dispose();
+    WidgetsBinding.instance.removeObserver(this);
+  }
 
   List<Transaction> get _recentTransactions {
     return _transactions.where((tr) {
@@ -187,6 +205,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             child: bodyPage,
           )
+          // esse é o botão verde de mais
         : Scaffold(
             appBar: appBar,
             body: bodyPage,
