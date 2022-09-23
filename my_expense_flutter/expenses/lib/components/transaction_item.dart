@@ -20,14 +20,15 @@ class TransactionItem extends StatefulWidget {
 
 class _TransactionItemState extends State<TransactionItem> {
   static const colors = [
-    Colors.red,
-    Colors.purple,
-    Colors.orange,
-    Colors.blue,
-    Colors.black,
+    Color.fromARGB(255, 250, 170, 164),
+    Color.fromARGB(255, 237, 172, 248),
+    Color.fromARGB(255, 241, 199, 135),
+    Color.fromARGB(255, 141, 194, 236),
+    Color.fromARGB(255, 250, 250, 250),
+    Color.fromARGB(255, 241, 235, 137),
   ];
 
-  Color? _backgroundColor;
+  Color ? _backgroundColor;
 
   @override
   void initState() {
@@ -40,10 +41,11 @@ class _TransactionItemState extends State<TransactionItem> {
   @override
   Widget build(BuildContext context) {
       return Card(
+                color: _backgroundColor,
                 //elevation colocará os cards,
                 //separando cada despesa
                 elevation: 5,
-                margin: const EdgeInsets.symmetric(
+                margin: const  EdgeInsets.symmetric(
                   //aqi temos a margin dos cards
                   // tanto usada na vertical
                   //quanto na horizontal
@@ -56,7 +58,7 @@ class _TransactionItemState extends State<TransactionItem> {
                   //ira virar um circulo
                   //como um circulo de avatar
                   leading: CircleAvatar(
-                    backgroundColor: _backgroundColor,
+                    backgroundColor: Colors.green,
                     //tamanho do 'raio'circulo
                     radius: 30,
                     child: Padding(
